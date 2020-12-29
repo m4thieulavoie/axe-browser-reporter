@@ -8,7 +8,7 @@
     "start": "webpack serve -- --env NODE_ENV=development",
     "lint": "eslint --ext .ts, src/ && npx stylelint \"src/**/*.scss\"",
     "clean": "rimraf dist",
-    "build": "npm run clean && npm run lint && webpack --env NODE_ENV=production"
+    "build": "npm run clean && npm run lint && tsc"
   },
   "repository": {
     "type": "git",
