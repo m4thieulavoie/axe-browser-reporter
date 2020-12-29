@@ -1,4 +1,4 @@
-import { setupAxeCore } from "./Models/AxeModels";
+import { setupAxeCore } from "./Utils/setup";
 
 setupAxeCore();
 

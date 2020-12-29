@@ -1,5 +1,5 @@
 import { FASTElement, customElement, html } from "@microsoft/fast-element";
-import { triggerAxeCore } from "../Models/AxeModels";
+import { triggerAxeCore } from "../Utils/setup";
 import styles from "./Index.scss";
 
 const template = html`<div class="heading">

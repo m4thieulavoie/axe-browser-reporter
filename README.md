@@ -2,7 +2,7 @@
 
 Axe reporter injected in the browser page if it detects any accessibility issue.
 
-This project is made to make the accessibility development a top priority. As soon as an a11y rule is broken, the popup will simply appear and let you know how you can fix it. We rely strongly on [axe-core](https://github.com/dequelabs/axe-core)
+This project is made to make the accessibility development a top priority. As soon as an a11y rule is broken, the popup will simply appear and let you know how you can fix it. We strongly rely on [axe-core](https://github.com/dequelabs/axe-core)
 
 ## Installation
 
@@ -20,3 +20,8 @@ In your project, import `axe-browser-reporter` at the root of your project (e.g.
 // Any setup code at root level of your app
 require("axe-browser-reporter");
 ```
+
+## Roadmap
+
+- Unit tests
+- Code cleaning

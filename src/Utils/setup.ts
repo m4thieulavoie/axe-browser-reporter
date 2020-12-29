@@ -1,55 +1,8 @@
-export type ViolationImpact = "moderate" | "serious";
-
-export interface AxeViolationNode {
-  failureSummary: string;
-  html: string;
-  impact: ViolationImpact;
-  target: string[];
-}
-
-export interface AxeViolation {
-  description: string;
-  help: string;
-  helpUrl: string;
-  id: string;
-  impact: ViolationImpact;
-  tags: string[];
-  nodes: AxeViolationNode[];
-}
-
-export interface AxeResult {
-  incomplete: AxeViolation[];
-  passes: AxeViolation[];
-  violations: AxeViolation[];
-}
-
-const replaceTag = (tag: string) => {
-  const tagsToReplace = {
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-  };
-
-  return (tagsToReplace as any)[tag] || tag;
-};
-
-const encodeHTMLTags = (str: string) => str.replace(/[&<>]/g, replaceTag);
+import { AxeResult, AxeViolation } from "./AxeModels";
+import generateViolationHTML from "./utils";
 
 const clean = () =>
   document.querySelectorAll("abr-index")?.forEach((e) => e.remove());
-
-const generateNodeHTML = (node: AxeViolationNode) =>
-  `<p>${node.failureSummary}</p><code>${encodeHTMLTags(node.html)}</code>`;
-
-const generateViolationHTML = (
-  violation: AxeViolation
-) => `<abr-status-dot status="${
-  violation.impact
-}" slot="start"></abr-status-dot><span slot="heading">${
-  violation.help
-}</span><p>${violation.description}</p>
-        ${violation.nodes?.map(generateNodeHTML).join(" ")}
-        <p><a href="${violation.helpUrl}" target="_blank">Read more...</a></p>`;
 
 export const triggerAxeCore = () => {
   clean();
