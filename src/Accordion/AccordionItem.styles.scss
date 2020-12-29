@@ -1,0 +1,41 @@
+@import "../sass/common";
+
+:host {
+  border-bottom: 1px solid lightgray;
+}
+
+[part="heading"] {
+  font-family: $font-default;
+  font-size: 1rem;
+  grid-template-columns: 2rem auto 1rem 1rem;
+  padding: 0.5rem 0.25rem;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
+
+:host([expanded]) {
+  [part="heading"] {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+:host([expanded]) .region {
+  flex-direction: column;
+  padding: 0.24rem 2rem 1rem;
+}
+
+::slotted(p) {
+  font-family: $font-default;
+  font-size: 0.9rem;
+  margin: 0.25rem 0;
+}
+
+::slotted(code) {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-family: $font-monospace;
+  padding: 0.25rem 0.5rem;
+}

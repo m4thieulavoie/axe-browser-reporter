@@ -1,0 +1,26 @@
+:host {
+  max-height: 50vh;
+  overflow-y: auto;
+  margin: auto;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0.25rem;
+  left: 0;
+  right: 0;
+  width: calc(100% - 1rem);
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding-top: 2rem;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  font-size: 1.5rem;
+}
+
+.heading {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+}
