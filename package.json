@@ -8,7 +8,10 @@
     "start": "webpack serve -- --env NODE_ENV=development",
     "lint": "eslint --ext .ts, src/ && npx stylelint \"src/**/*.scss\"",
     "clean": "rimraf dist",
-    "build": "npm run clean && npm run lint && tsc"
+    "build": "npm run clean && npm run lint && tsc",
+    "publish:patch": "npm version patch && npm publish && git push",
+    "publish:minor": "npm version minor && npm publish && git push",
+    "publish:major": "npm version major && npm publish && git push"
   },
   "repository": {
     "type": "git",
