@@ -3,7 +3,8 @@ const webpack = require("webpack");
 const path = require("path");
 
 module.exports = (env) => ({
-  entry: "./src/index.ts",
+  entry:
+    env.NODE_ENV === "development" ? "./src/index.dev.ts" : "./src/index.ts",
   mode: env.NODE_ENV,
   plugins: [
     new HtmlWebpackPlugin({
