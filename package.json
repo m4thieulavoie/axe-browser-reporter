@@ -8,7 +8,8 @@
     "start": "webpack serve -- --env NODE_ENV=development",
     "lint": "eslint --ext .ts, src/ && npx stylelint \"src/**/*.scss\"",
     "clean": "rimraf dist",
-    "build": "npm run clean && npm run lint && tsc",
+    "build": "npm run clean && npm run lint && tsc && copyfiles -u 1 \"src/**/*.scss\" dist",
+    "build:cjs": "npm run clean && npm run lint && webpack",
     "publish:patch": "npm version patch && npm publish && git push",
     "publish:minor": "npm version minor && npm publish && git push",
     "publish:major": "npm version major && npm publish && git push"
@@ -27,12 +28,12 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "4.11.0",
     "@typescript-eslint/parser": "4.11.0",
+    "copyfiles": "2.4.1",
     "eslint": "7.16.0",
     "eslint-config-airbnb-base": "14.2.1",
     "eslint-config-prettier": "7.1.0",
     "eslint-plugin-import": "2.22.1",
     "html-webpack-plugin": "4.5.0",
-    "lodash-es": "4.17.20",
     "prettier": "2.2.1",
     "rimraf": "3.0.2",
     "sass": "1.30.0",
@@ -53,7 +54,11 @@
     "@microsoft/fast-foundation": "1.11.1",
     "@vaadin/router": "1.7.2",
     "@webcomponents/webcomponentsjs": "2.5.0",
-    "axe-core": "^4.1.1"
+    "axe-core": "^4.1.1",
+    "lodash-es": "^4.17.20"
+  },
+  "peerDependencies": {
+    "lodash-es": "^4.0.0"
   },
   "browserslist": {
     "development": [

@@ -15,3 +15,11 @@
 :host([status="serious"]) {
   background-color: #f4442e;
 }
+
+:host([status="critical"]) {
+  background-color: red;
+}
+
+:host([status="minor"]) {
+  background-color: beige;
+}

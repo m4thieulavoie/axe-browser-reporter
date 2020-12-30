@@ -17,9 +17,14 @@ npm i axe-browser-reporter
 In your project, import `axe-browser-reporter` at the root of your project (e.g. an `index.(js|ts)` file).
 
 ```ts
+import bootstrap from "axe-browser-reporter";
 // Any setup code at root level of your app
-require("axe-browser-reporter");
+bootstrap();
 ```
+
+### Set options
+
+TBD
 
 ## Roadmap
 

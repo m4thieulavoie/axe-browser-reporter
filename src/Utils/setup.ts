@@ -1,6 +1,16 @@
 import { AxeResult, AxeViolation } from "./AxeModels";
 import generateViolationHTML from "./utils";
 
+interface AxeConfig {
+  whitelist?: string[];
+}
+
+let whiteList: string[] = [];
+
+export const setAxeConfig = (config: AxeConfig) => {
+  whiteList = config?.whitelist ?? [];
+};
+
 const clean = () =>
   document.querySelectorAll("abr-index")?.forEach((e) => e.remove());
 
@@ -10,7 +20,9 @@ export const triggerAxeCore = () => {
   axe
     .run()
     .then((results: AxeResult) => {
-      const allErrors = [...results.violations, ...results.incomplete];
+      const allErrors = [...results.violations, ...results.incomplete].filter(
+        (v) => !whiteList.find((item) => item === v.id)
+      );
       if (allErrors?.length) {
         const mainElement = document.createElement("abr-index");
         const axeTable = document.createElement("abr-accordion");
@@ -35,11 +47,15 @@ export const triggerAxeCore = () => {
 };
 
 export const setupAxeCore = () => {
-  if (process.env.NODE_ENV !== "production") {
-    triggerAxeCore();
+  document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+      if (process.env.NODE_ENV !== "production") {
+        triggerAxeCore();
 
-    window.addEventListener("popstate", () => {
-      triggerAxeCore();
-    });
-  }
+        window.addEventListener("popstate", () => {
+          triggerAxeCore();
+        });
+      }
+    }, 1);
+  });
 };

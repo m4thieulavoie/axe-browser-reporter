@@ -13,15 +13,19 @@ const replaceTag = (tag: string) => {
 const encodeHTMLTags = (str: string) => str.replace(/[&<>]/g, replaceTag);
 
 const generateNodeHTML = (node: AxeViolationNode) =>
-  `<p>${node.failureSummary}</p><code>${encodeHTMLTags(node.html)}</code>`;
+  `<p>${encodeHTMLTags(node.failureSummary)}</p><code>${encodeHTMLTags(
+    node.html
+  )}</code>`;
 
 const generateViolationHTML = (
   violation: AxeViolation
 ) => `<abr-status-dot status="${
   violation.impact
-}" slot="start"></abr-status-dot><span slot="heading">${
+}" slot="start"></abr-status-dot><span slot="heading">${encodeHTMLTags(
   violation.help
-}</span><p>${violation.description}</p>
+)} (<code>${violation.id}</code>)</span><p>${encodeHTMLTags(
+  violation.description
+)}</p>
           ${violation.nodes?.map(generateNodeHTML).join(" ")}
           <p><a href="${
             violation.helpUrl

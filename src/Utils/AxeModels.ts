@@ -1,4 +1,4 @@
-export type ViolationImpact = "moderate" | "serious";
+export type ViolationImpact = "moderate" | "serious" | "critical" | "minor";
 
 export interface AxeViolationNode {
   failureSummary: string;
