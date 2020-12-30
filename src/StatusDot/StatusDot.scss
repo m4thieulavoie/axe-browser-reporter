@@ -9,17 +9,17 @@
 }
 
 :host([status="moderate"]) {
-  background-color: #fcfc62;
+  background-color: #f4ac45;
 }
 
 :host([status="serious"]) {
-  background-color: #f4442e;
+  background-color: lighten(#f4442e, 10%);
 }
 
 :host([status="critical"]) {
-  background-color: red;
+  background-color: darken(#f4442e, 10%);
 }
 
 :host([status="minor"]) {
-  background-color: beige;
+  background-color: #fcfc62;
 }

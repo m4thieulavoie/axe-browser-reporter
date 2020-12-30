@@ -1,4 +1,5 @@
-import { AxeResult, AxeViolation } from "./AxeModels";
+import { Result, run } from "axe-core";
+import { AxeResult } from "./AxeModels";
 import generateViolationHTML from "./utils";
 
 interface AxeConfig {
@@ -13,19 +14,18 @@ const clean = () =>
 
 export const triggerAxeCore = () => {
   clean();
-  const axe = require("axe-core");
-  axe
-    .run()
+  run()
     .then((results: AxeResult) => {
       const allErrors = [...results.violations, ...results.incomplete].filter(
         (v) => !whiteList.find((item) => item === v.id)
       );
       if (allErrors?.length) {
         const mainElement = document.createElement("abr-index");
+        mainElement.setAttribute("violationCount", `${allErrors.length}`);
         const axeTable = document.createElement("abr-accordion");
         mainElement.append(axeTable);
 
-        allErrors.forEach((violation: AxeViolation) => {
+        allErrors.forEach((violation: Result) => {
           console.warn("axe-browser-reporter - a11y violation found ", {
             violation,
           });

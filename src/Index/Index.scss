@@ -1,7 +1,9 @@
+@import "../sass/common";
+
 :host {
   max-height: 50vh;
   overflow-y: auto;
-  background-color: #fff;
+  background-color: $gray-0;
   margin: auto;
   box-sizing: border-box;
   position: fixed;
@@ -11,17 +13,55 @@
   width: calc(100% - 1rem);
   border: 1px solid #ccc;
   border-radius: 6px;
-  padding-top: 2rem;
+}
+
+hr {
+  margin: 0;
 }
 
 button {
-  border: none;
-  background-color: transparent;
-  font-size: 1.5rem;
+  font-family: $font-default;
+  background-color: $gray-0;
+  border: 1px solid;
+  border-color: $gray-0;
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  outline: 0;
+
+  &:hover {
+    background-color: rgba($gray-0, 0.9);
+    border-color: rgba($gray-0, 0.9);
+  }
+
+  &:focus-visible {
+    border: 1px solid $accent-color;
+  }
+
+  &:active {
+    background-color: rgba($gray-0, 0.8);
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 0.5rem;
 }
 
 .heading {
-  position: absolute;
-  right: 0.5rem;
-  top: 0.5rem;
+  align-items: center;
+  background-color: #555;
+  color: $gray-0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 1.5rem;
+
+  p {
+    margin: 0;
+    font-family: $font-default;
+  }
+
+  button {
+    cursor: pointer;
+  }
 }

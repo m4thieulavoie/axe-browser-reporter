@@ -16,5 +16,6 @@ module.exports = {
     "global-require": 0,
     "import/extensions": 0,
     "no-console": 0,
+    "no-use-before-define": 0,
   },
 };

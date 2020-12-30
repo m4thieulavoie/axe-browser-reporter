@@ -1,4 +1,4 @@
-import { AxeViolation, AxeViolationNode } from "./AxeModels";
+import { NodeResult, Result } from "axe-core";
 
 const replaceTag = (tag: string) => {
   const tagsToReplace = {
@@ -12,23 +12,19 @@ const replaceTag = (tag: string) => {
 
 const encodeHTMLTags = (str: string) => str.replace(/[&<>]/g, replaceTag);
 
-const generateNodeHTML = (node: AxeViolationNode) =>
+const generateNodeHTML = (node: NodeResult) =>
   `<p>${encodeHTMLTags(node.failureSummary)}</p><code>${encodeHTMLTags(
     node.html
   )}</code>`;
 
-const generateViolationHTML = (
-  violation: AxeViolation
-) => `<abr-status-dot status="${
+const generateViolationHTML = (violation: Result) => `<abr-status-dot status="${
   violation.impact
 }" slot="start"></abr-status-dot><span slot="heading">${encodeHTMLTags(
   violation.help
-)} (<code>${violation.id}</code>)</span><p>${encodeHTMLTags(
+)} (<code>${violation.id}</code>)</span><blockquote>${encodeHTMLTags(
   violation.description
-)}</p>
+)}</blockquote>
           ${violation.nodes?.map(generateNodeHTML).join(" ")}
-          <p><a href="${
-            violation.helpUrl
-          }" target="_blank">Read more...</a></p>`;
+          <a href="${violation.helpUrl}" target="_blank">Read more...</a>`;
 
 export default generateViolationHTML;
