@@ -1,4 +1,4 @@
-export { setupAxeCore as default, setAxeConfig } from "./Utils/setup";
+export { setupAxeCore as default } from "./Utils/setup";
 
 require("./Index/Index");
 require("./Accordion");

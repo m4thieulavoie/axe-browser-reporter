@@ -7,10 +7,6 @@ interface AxeConfig {
 
 let whiteList: string[] = [];
 
-export const setAxeConfig = (config: AxeConfig) => {
-  whiteList = config?.whitelist ?? [];
-};
-
 const clean = () =>
   document.querySelectorAll("abr-index")?.forEach((e) => e.remove());
 
@@ -46,7 +42,11 @@ export const triggerAxeCore = () => {
     });
 };
 
-export const setupAxeCore = () => {
+export const setupAxeCore = (config?: AxeConfig) => {
+  if (config) {
+    whiteList = config?.whitelist ?? [];
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       if (process.env.NODE_ENV !== "production") {
