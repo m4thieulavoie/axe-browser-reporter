@@ -3,6 +3,7 @@ import generateViolationHTML from "./utils";
 
 interface AxeConfig {
   whitelist?: string[];
+  runIf?: () => boolean;
 }
 
 let whiteList: string[] = [];
@@ -43,13 +44,25 @@ export const triggerAxeCore = () => {
 };
 
 export const setupAxeCore = (config?: AxeConfig) => {
+  let runIf = () => {
+    try {
+      const envProcess = process.env;
+      return envProcess?.NODE_ENV === "development";
+    } catch {
+      return false;
+    }
+  };
   if (config) {
     whiteList = config?.whitelist ?? [];
+
+    if (config.runIf) {
+      runIf = config.runIf;
+    }
   }
 
   document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
-      if (process.env.NODE_ENV !== "production") {
+      if (runIf()) {
         triggerAxeCore();
 
         window.addEventListener("popstate", () => {
