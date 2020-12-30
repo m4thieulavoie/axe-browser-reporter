@@ -1,6 +1,7 @@
 # axe-browser-reporter
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 
 <p align="center">
     <img src="docs/demo.gif" alt="demo" height="300" margin="auto" />
