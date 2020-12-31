@@ -1,28 +1,24 @@
 import { Result, run } from "axe-core";
-import { AxeResult } from "./AxeModels";
-import generateViolationHTML from "./utils";
-
-interface AxeConfig {
-  whitelist?: string[];
-  runIf?: () => boolean;
-}
+import { AxeConfig } from "./models";
+import {
+  clean,
+  generateViolationHTML,
+  getViolationList,
+  computeRunIfCondition,
+} from "./utils";
 
 let whiteList: string[] = [];
-
-const clean = () =>
-  document.querySelectorAll("abr-index")?.forEach((e) => e.remove());
 
 export const triggerAxeCore = () => {
   clean();
   run()
-    .then((results: AxeResult) => {
-      const allErrors = [...results.violations, ...results.incomplete].filter(
-        (v) => !whiteList.find((item) => item === v.id)
-      );
+    .then((results) => {
+      const allErrors = getViolationList(results, whiteList);
       if (allErrors?.length) {
         const mainElement = document.createElement("abr-index");
-        mainElement.setAttribute("violationCount", `${allErrors.length}`);
+        document.querySelector("body").append(mainElement);
         const axeTable = document.createElement("abr-accordion");
+        mainElement.setAttribute("violationCount", `${allErrors.length}`);
         mainElement.append(axeTable);
 
         allErrors.forEach((violation: Result) => {
@@ -33,42 +29,28 @@ export const triggerAxeCore = () => {
           child.innerHTML = generateViolationHTML(violation);
           axeTable.append(child);
         });
-        document.querySelector("body").append(mainElement);
       } else {
         console.log("axe-browser-reporter - No accessibility issue found (:");
       }
     })
-    .catch((err: any) => {
-      console.error("Something bad happened:", err.message);
+    .catch((err) => {
+      console.error("axe-browser-reporter - Something bad happened:", err);
     });
 };
 
 export const setupAxeCore = (config?: AxeConfig) => {
-  let runIf = () => {
-    try {
-      const envProcess = process.env;
-      return envProcess?.NODE_ENV === "development";
-    } catch {
-      return false;
+  if (computeRunIfCondition(config)) {
+    if (config) {
+      whiteList = config?.whitelist ?? [];
     }
-  };
-  if (config) {
-    whiteList = config?.whitelist ?? [];
-
-    if (config.runIf) {
-      runIf = config.runIf;
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    setTimeout(() => {
-      if (runIf()) {
+    document.addEventListener("DOMContentLoaded", () => {
+      setTimeout(() => {
         triggerAxeCore();
 
         window.addEventListener("popstate", () => {
           triggerAxeCore();
         });
-      }
-    }, 1);
-  });
+      }, 1);
+    });
+  }
 };

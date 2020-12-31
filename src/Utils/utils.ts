@@ -1,4 +1,19 @@
-import { NodeResult, Result } from "axe-core";
+import { AxeResults, NodeResult, Result } from "axe-core";
+import { AxeConfig, defaultRunIf } from "./models";
+
+/**
+ * Finds and remove the instance of `abr-index` in the document
+ */
+export const clean = () =>
+  document.querySelectorAll("abr-index")?.forEach((e) => e.remove());
+
+export const getViolationList = (
+  { violations, incomplete }: AxeResults,
+  whiteList: string[]
+) =>
+  [...violations, ...incomplete].filter(
+    ({ id }) => !whiteList.find((item) => item === id)
+  );
 
 const replaceTag = (tag: string) => {
   const tagsToReplace = {
@@ -17,7 +32,9 @@ const generateNodeHTML = (node: NodeResult) =>
     node.html
   )}</code>`;
 
-const generateViolationHTML = (violation: Result) => `<abr-status-dot status="${
+export const generateViolationHTML = (
+  violation: Result
+) => `<abr-status-dot status="${
   violation.impact
 }" slot="start"></abr-status-dot><span slot="heading">${encodeHTMLTags(
   violation.help
@@ -27,4 +44,12 @@ const generateViolationHTML = (violation: Result) => `<abr-status-dot status="${
           ${violation.nodes?.map(generateNodeHTML).join(" ")}
           <a href="${violation.helpUrl}" target="_blank">Read more...</a>`;
 
-export default generateViolationHTML;
+export const computeRunIfCondition = (config?: AxeConfig) => {
+  if (config) {
+    if (config.runIf) {
+      return config.runIf;
+    }
+  }
+
+  return defaultRunIf;
+};
