@@ -15,7 +15,7 @@
   border-radius: 6px;
 }
 
-.hide {
+:host([collapsed]) slot {
   display: none
 }
 
