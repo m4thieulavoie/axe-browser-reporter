@@ -13,18 +13,27 @@ const template = html<IndexComponent>`<div class="heading">
       this web page
     </p>
     <div class="buttons">
-      <button class="refresh" @click=${() => triggerAxeCore()}>Refresh</button
-      ><button class="close" @click=${(x) => x.remove()}>Close</button>
+      <button class="refresh" @click=${() => triggerAxeCore()}>Refresh</button>
+      <button @click=${(x) => x.collapse()}>Collapse</button>
+      <button class="close" @click=${(x) => x.remove()}>Close</button>
     </div>
   </div>
   <hr />
-  <slot></slot>`;
+  <slot class="${x => x.collapsed ? 'hide':''}"></slot>`;
 
 @customElement({
   name: "abr-index",
   template,
   styles,
 })
+
 export default class IndexComponent extends FASTElement {
   @attr violationCount = 0;
+  @attr({mode: 'boolean'}) collapsed: boolean = JSON.parse(sessionStorage.getItem('collapsed'));
+
+  collapse() {
+    this.collapsed = !this.collapsed;
+    sessionStorage.setItem('collapsed', JSON.stringify(this.collapsed)); 
+  }
+  
 }
