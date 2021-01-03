@@ -19,7 +19,7 @@ const template = html<IndexComponent>`<div class="heading">
     </div>
   </div>
   <hr />
-  <slot class="${x => x.collapsed}"></slot>`;
+  <slot></slot>`;
 
 @customElement({
   name: "abr-index",
