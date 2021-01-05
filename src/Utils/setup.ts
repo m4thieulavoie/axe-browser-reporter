@@ -39,17 +39,26 @@ export const triggerAxeCore = () => {
 };
 
 export const setupAxeCore = (config?: AxeConfig) => {
+  const triggerHandler = () => {
+    triggerAxeCore();
+  };
+
   if (computeRunIfCondition(config)) {
     if (config) {
       whiteList = config?.whitelist ?? [];
     }
     document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
-        triggerAxeCore();
+        triggerHandler();
 
-        window.addEventListener("popstate", () => {
-          triggerAxeCore();
-        });
+        window.addEventListener("popstate", triggerHandler);
+        window.addEventListener(
+          "beforeunload",
+          () => {
+            window.removeEventListener("popstate", triggerHandler);
+          },
+          false
+        );
       }, 1);
     });
   }
