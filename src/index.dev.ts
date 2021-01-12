@@ -1,7 +1,15 @@
-import { setupAxeCore } from "./Utils/setup";
+// import "@webcomponents/webcomponentsjs";
+import { triggerAxeCore } from "./Utils/setup";
 
 require("./Index/Index");
 require("./Accordion");
 require("./StatusDot/StatusDot");
 
-setupAxeCore();
+console.log("test");
+// setupAxeCore({
+//   runIf: () => true,
+// });
+
+triggerAxeCore();
+
+console.log("test2");
