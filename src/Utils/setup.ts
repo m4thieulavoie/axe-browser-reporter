@@ -5,6 +5,7 @@ import {
   generateViolationHTML,
   getViolationList,
   computeRunIfCondition,
+  addEventListenerToCodeTag
 } from "./utils";
 
 let whiteList: string[] = [];
@@ -27,6 +28,7 @@ export const triggerAxeCore = () => {
           });
           const child = document.createElement("abr-accordion-item");
           child.innerHTML = generateViolationHTML(violation);
+          addEventListenerToCodeTag(child);
           axeTable.append(child);
         });
       } else {

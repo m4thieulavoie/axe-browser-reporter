@@ -34,8 +34,7 @@ const generateNodeHTML = (node: NodeResult) =>
 
 export const generateViolationHTML = (
   violation: Result
-) => `<abr-status-dot status="${
-  violation.impact
+) => `<abr-status-dot status="${violation.impact
 }" slot="start"></abr-status-dot><span slot="heading">${encodeHTMLTags(
   violation.help
 )} (<code>${violation.id}</code>)</span><blockquote>${encodeHTMLTags(
@@ -53,3 +52,21 @@ export const computeRunIfCondition = (config?: AxeConfig) => {
 
   return defaultRunIf;
 };
+
+export function addEventListenerToCodeTag(child: HTMLElement) {
+  let allPage = document.getElementsByTagName('*');
+  let codeTags = child.querySelectorAll('p + code');
+  codeTags.forEach(code => {
+    code.addEventListener('mouseover', function () {
+      Array.from(allPage).forEach((e: HTMLElement) => {
+        if (e.outerHTML == code.textContent) {
+          highlight(e);
+        }
+      })
+    })
+  })
+}
+
+function highlight(e: HTMLElement) {
+  e.style.backgroundColor = '#000000'
+}
