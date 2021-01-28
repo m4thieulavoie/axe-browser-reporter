@@ -16,15 +16,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/m4thieulavoie/webcomponents-starter.git"
+    "url": "git+https://github.com/m4thieulavoie/axe-browser-reporter.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/m4thieulavoie/webcomponents-starter/issues"
+    "url": "https://github.com/m4thieulavoie/axe-browser-reporter/issues"
   },
-  "homepage": "https://github.com/m4thieulavoie/webcomponents-starter#readme",
+  "homepage": "https://github.com/m4thieulavoie/axe-browser-reporter#readme",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "4.12.0",
     "@typescript-eslint/parser": "4.12.0",
