@@ -1,22 +1,22 @@
 @import "../sass/common";
 
 :host {
-  max-height: 50vh;
-  overflow-y: auto;
   background-color: $gray-0;
-  margin: auto;
-  box-sizing: border-box;
-  position: fixed;
-  bottom: 0.25rem;
-  left: 0;
-  right: 0;
-  width: calc(100% - 1rem);
   border: 1px solid #ccc;
   border-radius: 6px;
+  bottom: 0.25rem;
+  box-sizing: border-box;
+  left: 0;
+  margin: auto;
+  max-height: 50vh;
+  overflow-y: auto;
+  position: fixed;
+  right: 0;
+  width: calc(100% - 1rem);
 }
 
 :host([collapsed]) slot {
-  display: none
+  display: none;
 }
 
 hr {
@@ -24,14 +24,14 @@ hr {
 }
 
 button {
-  font-family: $font-default;
   background-color: $gray-0;
   border: 1px solid;
   border-color: $gray-0;
-  font-size: 0.8rem;
-  padding: 0.5rem;
   border-radius: 0.25rem;
+  font-family: $font-default;
+  font-size: 0.8rem;
   outline: 0;
+  padding: 0.5rem;
 
   &:hover {
     background-color: rgba($gray-0, 0.9);
@@ -61,8 +61,8 @@ button {
   padding: 0.5rem 1.5rem;
 
   p {
-    margin: 0;
     font-family: $font-default;
+    margin: 0;
   }
 
   button {

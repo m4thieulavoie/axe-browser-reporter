@@ -1,5 +1,6 @@
-import { AxeResults, NodeResult, Result } from "axe-core";
-import { AxeConfig, defaultRunIf } from "./models";
+import type { AxeResults, NodeResult, Result } from "axe-core";
+import type { AxeConfig } from "./models";
+import { defaultRunIf } from "./models";
 
 /**
  * Finds and remove the instance of `abr-index` in the document
@@ -9,7 +10,7 @@ export const clean = () =>
 
 export const getViolationList = (
   { violations, incomplete }: AxeResults,
-  whiteList: string[]
+  whiteList: readonly string[]
 ) =>
   [...violations, ...incomplete].filter(
     ({ id }) => !whiteList.find((item) => item === id)
@@ -25,7 +26,8 @@ const replaceTag = (tag: string) => {
   return (tagsToReplace as any)[tag] || tag;
 };
 
-const encodeHTMLTags = (str: string) => str.replace(/[&<>]/g, replaceTag);
+export const encodeHTMLTags = (str: string) =>
+  str.replace(/[&<>]/g, replaceTag);
 
 const generateNodeHTML = (node: NodeResult) =>
   `<p>${encodeHTMLTags(node.failureSummary)}</p><code>${encodeHTMLTags(
@@ -52,4 +54,22 @@ export const computeRunIfCondition = (config?: AxeConfig) => {
   }
 
   return defaultRunIf;
+};
+
+export const highlightViolation = (node: NodeResult) => {
+  const elements = document.querySelectorAll(node.target?.[0]);
+
+  elements.forEach((element: HTMLElement) => {
+    element.style.outline = "2px dashed orange";
+    element.style.outlineOffset = "2px";
+  });
+};
+
+export const unHighlightViolation = (node: NodeResult) => {
+  const elements = document.querySelectorAll(node.target?.[0]);
+
+  elements.forEach((element: HTMLElement) => {
+    element.style.outline = "";
+    element.style.outlineOffset = "";
+  });
 };

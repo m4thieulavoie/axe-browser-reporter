@@ -1,7 +1,7 @@
 @import "../sass/common";
 
 :host {
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid #d3d3d3;
 }
 
 [part="heading"] {
@@ -32,8 +32,8 @@
 }
 
 ::slotted(*) {
-  font-family: $font-default;
   color: $gray-10;
+  font-family: $font-default;
 }
 
 ::slotted(a) {
@@ -44,8 +44,8 @@
 ::slotted(code) {
   background-color: $gray-2;
   border-radius: 6px;
-  font-size: 0.8rem;
   font-family: $font-monospace;
+  font-size: 0.8rem;
   padding: 0.25rem 0.5rem;
 }
 

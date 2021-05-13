@@ -1,6 +1,6 @@
 export interface AxeConfig {
-  whitelist?: string[];
-  runIf?: () => boolean;
+  readonly whitelist?: readonly string[];
+  readonly runIf?: () => boolean;
 }
 
 export const defaultRunIf = () => {
