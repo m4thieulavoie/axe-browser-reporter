@@ -27,8 +27,8 @@
   "homepage": "https://github.com/m4thieulavoie/axe-browser-reporter#readme",
   "devDependencies": {
     "@m4thieulavoie/linting": "0.0.10",
-    "@typescript-eslint/eslint-plugin": "4.26.1",
-    "@typescript-eslint/parser": "4.26.1",
+    "@typescript-eslint/eslint-plugin": "4.27.0",
+    "@typescript-eslint/parser": "4.27.0",
     "copyfiles": "2.4.1",
     "eslint": "7.28.0",
     "eslint-config-airbnb-base": "14.2.1",
