@@ -1,5 +1,5 @@
 export interface AxeConfig {
-  readonly whitelist?: readonly string[];
+  readonly allowlist?: readonly string[];
   readonly runIf?: () => boolean;
 }
 

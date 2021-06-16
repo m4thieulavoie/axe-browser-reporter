@@ -76,14 +76,14 @@ export default class IndexComponent extends FASTElement {
     sessionStorage.getItem("collapsed")
   );
   @attr violations: Result[] = [];
-  @attr whiteList: string[] = [];
+  @attr allowlist: string[] = [];
 
   connectedCallback() {
     super.connectedCallback();
 
     run()
       .then((results) => {
-        const allErrors = getViolationList(results, this.whiteList);
+        const allErrors = getViolationList(results, this.allowlist);
         if (allErrors?.length) {
           this.violationCount = allErrors.length;
           allErrors.forEach((violation: Result) => {

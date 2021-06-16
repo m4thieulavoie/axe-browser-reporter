@@ -10,10 +10,10 @@ export const clean = () =>
 
 export const getViolationList = (
   { violations, incomplete }: AxeResults,
-  whiteList: readonly string[]
+  allowlist: readonly string[]
 ) =>
   [...violations, ...incomplete].filter(
-    ({ id }) => !whiteList.find((item) => item === id)
+    ({ id }) => !allowlist.find((item) => item === id)
   );
 
 const replaceTag = (tag: string) => {
