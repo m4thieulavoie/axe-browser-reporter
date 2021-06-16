@@ -2,12 +2,12 @@ import type IndexComponent from "../Index/Index";
 import type { AxeConfig } from "./models";
 import { clean, computeRunIfCondition } from "./utils";
 
-let whiteList: readonly string[] = [];
+let allowlist: readonly string[] = [];
 
 export const triggerAxeCore = () => {
   clean();
   const mainElement = document.createElement("abr-index") as IndexComponent;
-  mainElement.whiteList = [...whiteList];
+  mainElement.allowlist = [...allowlist];
   document.querySelector("body").append(mainElement);
 };
 
@@ -18,7 +18,7 @@ export const setupAxeCore = (config?: AxeConfig) => {
 
   if (computeRunIfCondition(config)) {
     if (config) {
-      whiteList = config?.whitelist ?? [];
+      allowlist = config?.allowlist ?? [];
     }
     document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {

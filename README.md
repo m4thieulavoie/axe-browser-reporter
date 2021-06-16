@@ -43,12 +43,12 @@ import bootstrap from "axe-browser-reporter";
 
 // Default values
 bootstrap({
-  whitelist: [],
+  allowlist: [],
   runIf: () => process.env?.NODE_ENV === "development",
 });
 ```
 
-### `whitelist`
+### `allowlist`
 
 If there are rules you want `axe-browser-reporter` **not** to notify you about, you can specify them in an array of `string` like such. The argument is the `id` given from `axe`. The full list can be found [here](https://github.com/dequelabs/axe-core/blob/f318a2c958aa771493d7690b051f37b22ac1bcaf/doc/rule-descriptions.md)
 
@@ -57,7 +57,7 @@ import bootstrap from "axe-browser-reporter";
 
 // Will ignore color-contrast and frame-tested a11y rules
 bootstrap({
-  whitelist: ["color-contrast", "frame-tested"],
+  allowlist: ["color-contrast", "frame-tested"],
 });
 ```
 
