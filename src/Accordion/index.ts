@@ -1,2 +1,0 @@
-require("./Accordion");
-require("./AccordionItem");
