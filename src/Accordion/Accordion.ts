@@ -1,13 +1,9 @@
-import { AccordionTemplate as template } from "@microsoft/fast-foundation";
-import { FASTAccordion, AccordionStyles } from "@microsoft/fast-components";
-import { customElement, css } from "@microsoft/fast-element";
+import { accordionStyles, fastAccordion } from "@microsoft/fast-components";
+import { css } from "@microsoft/fast-element";
 import styles from "./Accordion.styles.scss";
 
-@customElement({
-  name: "abr-accordion",
-  template,
+export const AccordionComponent = fastAccordion({
   styles: css`
-    ${AccordionStyles}${styles}
+    ${accordionStyles as any}${styles}
   `,
-})
-export default class AccordionComponent extends FASTAccordion {}
+});
