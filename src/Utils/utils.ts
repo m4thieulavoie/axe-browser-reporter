@@ -12,9 +12,15 @@ export const getViolationList = (
   { violations, incomplete }: AxeResults,
   allowlist: readonly string[]
 ) =>
-  [...violations, ...incomplete].filter(
-    ({ id }) => !allowlist.find((item) => item === id)
-  );
+  [...violations, ...incomplete]
+    .filter(({ id }) => !allowlist.find((item) => item === id))
+    .map((violation) => ({
+      ...violation,
+      nodes: violation.nodes.filter(
+        (node) => node.html !== "<abr-index></abr-index>"
+      ),
+    }))
+    .filter((violation) => !!violation.nodes.length);
 
 const replaceTag = (tag: string) => {
   const tagsToReplace = {
