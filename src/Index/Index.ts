@@ -33,42 +33,45 @@ const generateNodeHTML = (node: NodeResult) =>
 
 const template = html<IndexComponent>`${when(
   (x) => !!x.violationCount,
-  html`<div class="heading">
-      <p>
-        <strong>${(x) => x.violationCount}</strong> accessibility issues found
-        in this web page
-      </p>
-      <div class="buttons">
-        <button class="refresh" @click=${() => triggerAxeCore()}>
-          Refresh
-        </button>
-        <button @click=${(x) => x.collapse()}>
-          ${(x) => (x.collapsed ? "Expand" : "Collapse")}
-        </button>
-        <button class="close" @click=${(x) => x.remove()}>Close</button>
+  html`<div class="wrapper">
+      <div class="heading">
+        <p>
+          <strong>${(x) => x.violationCount}</strong> accessibility issues found
+          in this web page
+        </p>
+        <div class="buttons">
+          <button class="refresh" @click=${() => triggerAxeCore()}>
+            Refresh
+          </button>
+          <button @click=${(x) => x.collapse()}>
+            ${(x) => (x.collapsed ? "Expand" : "Collapse")}
+          </button>
+          <button class="close" @click=${(x) => x.remove()}>Close</button>
+        </div>
       </div>
+      <hr />
+      <abr-accordion>
+        ${repeat(
+          (x) => x.violations,
+          html<Result>`<abr-accordion-item
+            ><abr-status-dot
+              status="${(x) => x.impact}"
+              slot="start"
+            ></abr-status-dot
+            ><span slot="heading"
+              >${(x) => html`${encodeHTMLTags(x.help)}`}
+              (<code>${(x) => x.id}</code>)</span
+            >
+            <blockquote>${(x) => encodeHTMLTags(x.description)}</blockquote>
+            ${repeat((x) => x.nodes, html`${(y) => generateNodeHTML(y)}`)}
+            <a href="${(x) => x.helpUrl}" target="_blank"
+              >Read more...</a
+            ></abr-accordion-item
+          >`
+        )}
+      </abr-accordion>
     </div>
-    <hr />
-    <abr-accordion>
-      ${repeat(
-        (x) => x.violations,
-        html<Result>`<abr-accordion-item
-          ><abr-status-dot
-            status="${(x) => x.impact}"
-            slot="start"
-          ></abr-status-dot
-          ><span slot="heading"
-            >${(x) => html`${encodeHTMLTags(x.help)}`}
-            (<code>${(x) => x.id}</code>)</span
-          >
-          <blockquote>${(x) => encodeHTMLTags(x.description)}</blockquote>
-          ${repeat((x) => x.nodes, html`${(y) => generateNodeHTML(y)}`)}
-          <a href="${(x) => x.helpUrl}" target="_blank"
-            >Read more...</a
-          ></abr-accordion-item
-        >`
-      )}
-    </abr-accordion>`
+  </div>`
 )}`;
 
 @customElement({

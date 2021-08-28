@@ -1,8 +1,6 @@
 @import "../sass/common";
 
 :host {
-  background-color: $gray-0;
-  border: 1px solid #ccc;
   border-radius: 6px;
   bottom: 0.25rem;
   box-sizing: border-box;
@@ -13,6 +11,11 @@
   position: fixed;
   right: 0;
   width: calc(100% - 1rem);
+
+  .wrapper {
+    background-color: $gray-0;
+    border: 1px solid #ccc;
+  }
 }
 
 :host([collapsed]) slot {
