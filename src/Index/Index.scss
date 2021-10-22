@@ -37,8 +37,8 @@ button {
   padding: 0.5rem;
 
   &:hover {
-    background-color: rgba($gray-0, 0.9);
-    border-color: rgba($gray-0, 0.9);
+    background-color: rgba(255 255 255 / 0.9);
+    border-color: rgba(255 255 255 / 0.9);
   }
 
   &:focus-visible {
@@ -46,7 +46,7 @@ button {
   }
 
   &:active {
-    background-color: rgba($gray-0, 0.8);
+    background-color: rgba(255 255 255 / 0.8);
   }
 }
 

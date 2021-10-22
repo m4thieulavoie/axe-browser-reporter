@@ -14,6 +14,16 @@
         "^@microsoft/fast-web-utilities"
       ],
       "groupName": "Microsoft FAST"
+    },
+    {
+      "packagePatterns": [
+        "^stylelint",
+        "^stylelint-config-prettier",
+        "^stylelint-config-standard",
+        "^stylelint-order",
+        "^stylelint-scss"
+      ],
+      "groupName": "Stylelint"
     }
   ]
 }
