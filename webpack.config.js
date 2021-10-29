@@ -1,6 +1,6 @@
+const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
-const path = require("path");
 
 module.exports = (env) => ({
   entry:
@@ -36,6 +36,7 @@ module.exports = (env) => ({
   },
   resolve: {
     extensions: [".ts", ".js"],
+    fallback: { crypto: false },
   },
   output: {
     filename: "index.js",

@@ -2,7 +2,7 @@ import { DesignSystem } from "@microsoft/fast-foundation";
 import { AccordionComponent } from "./Accordion/Accordion";
 import { AccordionItemComponent } from "./Accordion/AccordionItem";
 
-export { setupAxeCore as default } from "./Utils/setup";
+export { setupAxeCore as default, triggerAxeCore } from "./Utils/setup";
 
 DesignSystem.getOrCreate()
   .withPrefix("abr")
