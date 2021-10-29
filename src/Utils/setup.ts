@@ -16,7 +16,7 @@ export const setupAxeCore = (config?: AxeConfig) => {
     triggerAxeCore();
   };
 
-  if (computeRunIfCondition(config)) {
+  if (computeRunIfCondition(config)()) {
     if (config) {
       allowlist = config?.allowlist ?? [];
     }
