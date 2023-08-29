@@ -32,7 +32,7 @@
     "copyfiles": "2.4.1",
     "eslint": "8.48.0",
     "html-webpack-plugin": "5.5.3",
-    "postcss": "8.4.28",
+    "postcss": "8.4.29",
     "postcss-scss": "4.0.7",
     "prettier": "2.8.8",
     "rimraf": "3.0.2",
