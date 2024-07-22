@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/m4thieulavoie/axe-browser-reporter#readme",
   "devDependencies": {
-    "@m4thieulavoie/linting": "0.2.13",
+    "@m4thieulavoie/linting": "1.0.0",
     "@typescript-eslint/eslint-plugin": "5.62.0",
     "@typescript-eslint/parser": "5.62.0",
     "copyfiles": "2.4.1",
